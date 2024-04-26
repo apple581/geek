@@ -1,0 +1,465 @@
+@charset "utf-8";
+body{
+  margin: 0;
+  background-size: 32px 32px ;
+  background-color: rgb(253, 253, 253);
+  background-image: linear-gradient(90deg, transparent 31px, #333 32px), linear-gradient(0deg, transparent 31px, #333 32px);
+}
+/*==================================================
+ギャラリーのためのcss
+===================================*/
+
+/*＝＝＝並び替えボタンのCSS*/
+.sort-btn{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding:50px 20px;
+}
+
+.sort-btn li{
+  background:#eee;
+  border-radius:10px;
+  cursor: pointer;
+  padding: 10px;
+  margin:0 10px;
+}
+
+.sort-btn li.active{/*ボタンに現在地＝activeというクラス名がついたら背景色を変更*/
+  background:#ccc;  
+}
+
+/*横幅が480px以下になった際の指定*/
+@media only screen and (max-width: 480px) {
+.sort-btn{
+  justify-content: space-between;
+}
+  
+.sort-btn li{
+  width:48%;
+ 
+  text-align:center;
+  } 
+}
+
+/*＝＝＝Muuriのレイアウトのための調整 */
+.grid {
+  position: relative;/*並び替えの基準点を指定*/
+  justify-content: center;
+  margin-left: 7em;
+}
+
+/*各画像の横幅などの設定*/
+.item {
+  margin-bottom: 2em;
+  position: absolute;
+  width: 33%;/*横並びで3つ表示*/
+  z-index: 1;
+ 
+}
+
+/*内側のボックスの高さが崩れないように維持*/
+.item-content {
+ 
+  width: 20em;
+  height: 20em;
+  justify-content: center;
+  text-align: center;
+}
+
+/*画像の横幅を100%にしてレスポンシブ化*/
+.grid img{
+  width:20em;
+  height:auto;
+  vertical-align: bottom;/*画像の下にできる余白を削除*/
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+/*横幅が768px以下になった際の指定*/
+@media only screen and (max-width: 768px) {
+.item {
+  width: 49.5%;/*横並びで2つ表示*/
+}
+}
+
+/*＝＝＝fancyboxサムネイル背景と画像選択時の枠線の指定*/
+.fancybox-thumbs {
+    background: transparent!important;
+}
+
+.fancybox-thumbs__list a:before {
+    border: 6px solid #FA999B;
+}
+
+
+/*========= レイアウトのためのCSS ===============*/
+ul{
+  margin:0;
+  padding: 0;
+  list-style: none;
+}
+
+a{
+  color: #333;
+}
+
+a:hover,
+a:active{
+  text-decoration: none;
+}
+
+h1{
+  text-align: center;
+  font-size:6vw;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin:30px 0;
+}
+
+p{
+  margin:0 10px 10px 10px;
+  word-wrap : break-word;
+}
+
+
+
+
+/*========= ボタンのためのCSS ===============*/
+
+/*ボタン全体の形状*/
+.openbtn1{
+  /*はじめは非表示に*/
+display: none;
+  /*ボタンの位置*/
+position:fixed;
+top:10px;
+right: 10px;
+z-index: 999;
+  /*ボタンの形状*/
+background:#666;
+cursor: pointer;
+  width: 50px;
+  height:50px;
+border-radius: 5px;
+}
+
+/*ボタンのアイコン設定*/
+.openbtn1 span{
+  display: inline-block;
+  transition: all .4s;
+  position: absolute;
+  left: 14px;
+  height: 3px;
+  border-radius: 2px;
+background-color: #fff;
+  width: 45%;
+}
+
+.openbtn1 span:nth-of-type(1) {
+top:15px; 
+}
+
+.openbtn1 span:nth-of-type(2) {
+top:23px;
+}
+
+.openbtn1 span:nth-of-type(3) {
+top:31px;
+}
+
+/*activeクラスが付与された後のボタンのアイコン設定*/
+.openbtn1.active span:nth-of-type(1) {
+  top: 18px;
+  left: 18px;
+  transform: translateY(6px) rotate(-45deg);
+  width: 30%;
+}
+
+.openbtn1.active span:nth-of-type(2) {
+opacity: 0;
+}
+
+.openbtn1.active span:nth-of-type(3){
+  top: 30px;
+  left: 18px;
+  transform: translateY(-6px) rotate(45deg);
+  width: 30%;
+}
+
+/*fadeDownクラスが付与された後のボタンの出現アニメーション設定*/
+.fadeDown {
+  animation-name: fadeDownAnime;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  display: block;
+}
+@keyframes fadeDownAnime{
+from {
+  opacity: 0;
+transform: translateY(-100px);
+}
+
+to {
+  opacity: 1;
+transform: translateY(0);
+}
+}
+
+
+/*========= ヘッダーナビゲーションのためのCSS ===============*/
+
+/*==ヘッダーの形状*/
+#header{
+height: 70px;
+width:auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+background:rgb(255, 255, 255);
+color:#fff;
+text-align: center;
+padding: 10px;
+
+}
+
+h1 img{
+width: 130px;
+height: auto;
+}
+
+/*.doneクラスがついたヘッダー*/
+#header.dnone {
+opacity: 0;/*透過0にして非表示に*/
+}
+
+/*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたら*/
+#header.dnone.panelactive {
+opacity: 1;/*不透明にして出現*/
+}
+
+
+/*==ヘッダーのテキストナビゲーションの形状*/
+#g-navi ul{
+list-style: none;
+display: flex;
+
+}
+
+#g-navi ul li a{
+
+text-decoration: none;
+color: #666;
+padding:10px;
+}
+
+#g-navi ul li.current a,
+#g-navi ul li a:hover{
+color:rgb(224, 224, 224); 
+}
+
+/*.doneクラスがついたヘッダーのテキストナビゲーションの形状*/
+#header.dnone #g-navi{
+  /*固定位置にして最背面に*/
+  position:fixed;
+top: 0;
+  left: 0;
+z-index: -1;
+  /*高さと幅*/  
+width:100%;
+height: 100vh;
+  /*天地中央＆テキスト中央揃え*/  
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+  /*はじめは透過0に*/  
+  opacity: 0;
+transition: all 0.4s;
+}
+
+/*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたナビゲーションの形状*/
+#header.dnone.panelactive #g-navi{
+opacity: 1;/*不透明に*/
+z-index:3;/*最前面に*/
+background:#eee;
+}
+
+#header.dnone.panelactive #g-navi ul{
+display:block;/*flexの横並びをblockにして縦並びに*/
+}
+
+
+/*リストの形状*/
+
+#header.dnone.panelactive #g-navi li a{
+color: #333;
+text-decoration: none;
+padding:10px;
+display: block;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+font-weight: bold;
+transition:all 0.3s;
+}
+
+
+/*========= レイアウトのためのCSS ===============*/
+
+
+
+small{
+background:rgb(252, 247, 247);
+color:rgb(27, 27, 27);
+display: block;
+text-align: center;
+padding:20px;
+}
+
+.top img{
+  width: 100%;
+}
+
+.setumei{
+  display: flex;
+  justify-content: center;
+  gap: 1em
+}
+
+.aa{
+  width: 15em;
+  height: 20em;
+  background-color: #b2c8f8;
+  border-radius: 10px;
+  
+}
+
+.aa img{
+  width: 15vmax;
+  z-index: 99;
+  margin-left: 1.5em;
+}
+
+hr {
+  border-width: 2px 0px 0px 0px; /* 太さ */
+  border-style: solid; /* 線種 */
+  border-color: rgb(0, 0, 0);   /* 線色 */
+  width: 10em;        
+}
+
+.text{
+  font-size: min(1vw,2em);
+  text-align: center;
+  margin: 3em;
+}
+
+.sample2 {
+	width:			280px;
+	height:			188px;
+	overflow:		hidden;
+	margin:			10px 8px 10px 16px;
+	position:		relative;
+}
+.sample2 .caption {
+	font-size:		130%;
+	text-align: 		center;
+	color:			#fff;
+}
+.sample2 .mask {
+	width:			100%;
+	height:			100%;
+	position:		absolute;
+	top:			0;
+	left:			0;
+	opacity:		0;	/* マスクを表示しない */
+	background-color:	rgba(0,0,0,0.4);
+	-webkit-transition:	all 0.6s ease;
+	transition:		all 0.6s ease;
+}
+.sample2:hover .mask {
+	opacity:		1;	/* マスクを表示する */
+	padding-top:		80px;	/* ホバーで下にずらす */
+}
+
+
+.item-content.caption {
+	font-size:		130%;
+	color:			#fff;
+	text-align: 		center;
+	padding-top:		80px;
+}
+.item-content .mask {
+	width:			100%;
+	height:			100%;
+	position:		absolute;
+	top:			0;
+	left:			0;
+	opacity:		0;	/* 表示させない */
+	background-color:	rgba(111, 132, 155, 0.925);
+	-webkit-transform:	rotateX(-180deg);
+	transform:		rotateX(-180deg);
+	-webkit-transition:	all 0.6s ease;
+	transition:		all 0.6s ease;
+}
+.item-content:hover .mask {
+	-webkit-transform:	rotateX(0deg);
+	transform:		rotateX(0deg);
+	opacity:		1;	/* ホバーで表示する */
+}
+
+
+/* ここはコピーしなくてOK　*/
+.container {
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap');
+  font-family: 'Noto Sans JP', sans-serif;
+  text-align: center;
+  padding-top: 40px;
+}
+
+/* ここから下がボタンのCSS　*/
+.btn-sizechange {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 700;
+  color: #65A04D;
+  text-align: center;
+  width: inherit;
+  min-width: 188px;
+  border: 2px solid #65A04D;
+  padding: 12px 16px;
+  position: relative;
+  opacity: 1 !important;
+  transition: all 0.3s;
+}
+.btn-sizechange:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  opacity: 0;
+  background-color: #65A04D;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+.btn-sizechange span {
+  position: relative;
+  z-index: 99;
+}
+
+
+
+.btn-sizechange:hover {
+  color: #FFF;
+  transform: scale(0.9);
+}
+.btn-sizechange:hover:after {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+

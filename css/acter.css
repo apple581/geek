@@ -1,0 +1,655 @@
+@charset "utf-8";
+body{
+    margin: 0;
+    background-size: 32px 32px ;
+  background-color: rgb(253, 253, 253);
+  background-image: linear-gradient(90deg, transparent 31px, #333 32px), linear-gradient(0deg, transparent 31px, #333 32px);
+   
+}
+
+/*========= ボタンのためのCSS ===============*/
+
+/*ボタン全体の形状*/
+.openbtn1{
+    /*はじめは非表示に*/
+  display: none;
+    /*ボタンの位置*/
+  position:fixed;
+  top:10px;
+  right: 10px;
+  z-index: 999;
+    /*ボタンの形状*/
+  background:#666;
+  cursor: pointer;
+    width: 50px;
+    height:50px;
+  border-radius: 5px;
+}
+
+/*ボタンのアイコン設定*/
+.openbtn1 span{
+    display: inline-block;
+    transition: all .4s;
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+  background-color: #fff;
+    width: 45%;
+  }
+
+.openbtn1 span:nth-of-type(1) {
+  top:15px; 
+}
+
+.openbtn1 span:nth-of-type(2) {
+  top:23px;
+}
+
+.openbtn1 span:nth-of-type(3) {
+  top:31px;
+}
+
+/*activeクラスが付与された後のボタンのアイコン設定*/
+.openbtn1.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 30%;
+}
+
+.openbtn1.active span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.openbtn1.active span:nth-of-type(3){
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 30%;
+}
+
+/*fadeDownクラスが付与された後のボタンの出現アニメーション設定*/
+.fadeDown {
+    animation-name: fadeDownAnime;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    display: block;
+}
+@keyframes fadeDownAnime{
+  from {
+    opacity: 0;
+  transform: translateY(-100px);
+  }
+
+  to {
+    opacity: 1;
+  transform: translateY(0);
+  }
+}
+
+
+/*========= ヘッダーナビゲーションのためのCSS ===============*/
+
+/*==ヘッダーの形状*/
+#header{
+  height: 70px;
+  width:auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background:rgb(255, 255, 255);
+  color:#fff;
+  text-align: center;
+  padding: 10px;
+ 
+}
+
+h1 img{
+  width: 130px;
+  height: auto;
+}
+
+/*.doneクラスがついたヘッダー*/
+#header.dnone {
+  opacity: 0;/*透過0にして非表示に*/
+}
+
+/*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたら*/
+#header.dnone.panelactive {
+  opacity: 1;/*不透明にして出現*/
+}
+
+
+/*==ヘッダーのテキストナビゲーションの形状*/
+#g-navi ul{
+  list-style: none;
+  display: flex;
+  
+  }
+
+#g-navi ul li a{
+  
+  text-decoration: none;
+  color: #666;
+  padding:10px;
+}
+
+#g-navi ul li.current a,
+#g-navi ul li a:hover{
+  color:rgb(224, 224, 224); 
+}
+
+/*.doneクラスがついたヘッダーのテキストナビゲーションの形状*/
+#header.dnone #g-navi{
+    /*固定位置にして最背面に*/
+    position:fixed;
+  top: 0;
+    left: 0;
+  z-index: -1;
+    /*高さと幅*/  
+  width:100%;
+  height: 100vh;
+    /*天地中央＆テキスト中央揃え*/  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+    /*はじめは透過0に*/  
+    opacity: 0;
+  transition: all 0.4s;
+}
+
+/*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたナビゲーションの形状*/
+#header.dnone.panelactive #g-navi{
+  opacity: 1;/*不透明に*/
+  z-index:3;/*最前面に*/
+  background:#eee;
+}
+
+#header.dnone.panelactive #g-navi ul{
+  display:block;/*flexの横並びをblockにして縦並びに*/
+}
+
+
+/*リストの形状*/
+
+#header.dnone.panelactive #g-navi li a{
+  color: #333;
+  text-decoration: none;
+  padding:10px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  transition:all 0.3s;
+}
+
+
+/*========= レイアウトのためのCSS ===============*/
+
+
+
+small{
+  background:rgb(255, 255, 255);
+  color:rgb(27, 27, 27);
+  display: block;
+  text-align: center;
+  padding:20px;
+}
+
+
+section{
+  padding:30px;
+}
+
+section:nth-child(2n){
+  background:#f3f3f3; 
+}
+
+
+/*==================================================
+スライダーのためのcss
+===================================*/
+.slider {/*横幅94%で左右に余白を持たせて中央寄せ*/
+   width:90%;
+    margin:0 auto;
+}
+
+.slider img {
+    width:100%;/*スライダー内の画像を横幅100%に*/
+    height:auto;
+}
+
+/*slickのJSで書かれるタグ内、スライド左右の余白調整*/
+
+.slider .slick-slide {
+    margin:0 10px;
+}
+
+/*矢印の設定*/
+
+/*戻る、次へ矢印の位置*/
+.slick-prev, 
+.slick-next {
+    position: absolute;/*絶対配置にする*/
+    top: 42%;
+    cursor: pointer;/*マウスカーソルを指マークに*/
+    outline: none;/*クリックをしたら出てくる枠線を消す*/
+    border-top: 2px solid #666;/*矢印の色*/
+    border-right: 2px solid #666;/*矢印の色*/
+    height: 15px;
+    width: 15px;
+}
+
+.slick-prev {/*戻る矢印の位置と形状*/
+    left: -1.5%;
+    transform: rotate(-135deg);
+}
+
+.slick-next {/*次へ矢印の位置と形状*/
+    right: -1.5%;
+    transform: rotate(45deg);
+}
+
+/*ドットナビゲーションの設定*/
+
+.slick-dots {
+    text-align:center;
+  margin:20px 0 0 0;
+}
+
+.slick-dots li {
+    display:inline-block;
+  margin:0 5px;
+}
+
+.slick-dots button {
+    color: transparent;
+    outline: none;
+    width:8px;/*ドットボタンのサイズ*/
+    height:8px;/*ドットボタンのサイズ*/
+    display:block;
+    border-radius:50%;
+    background:#ccc;/*ドットボタンの色*/
+}
+
+.slick-dots .slick-active button{
+    background:#333;/*ドットボタンの現在地表示の色*/
+}
+
+
+/*========= レイアウトのためのCSS ===============*/
+
+ul{
+  margin:0;
+  padding: 0;
+  list-style: none;
+}
+
+a{
+  color: #333;
+}
+
+a:hover,
+a:active{
+  text-decoration: none;
+}
+
+
+
+/* 西山宏太朗 */
+#nishiyama{
+  margin: 0 4rem ;
+  background-color: rgba(222, 222, 222, 0.807);
+}
+
+.left{
+  width: 55%;
+}
+
+.main{
+  display: flex;
+}
+
+.right{
+  margin-top: 2em;
+}
+
+
+/* left */
+.point li{
+  font-size: min(1vw,50rem);
+}
+
+.neil{
+ display: flex;
+ gap: 1em;
+}
+
+.neil-img img{
+  width: 18vmax;
+}
+
+.neil-text{
+  font-size: min(1.1vw,2em);
+}
+
+.neil-img2 {
+  display: flex;
+  gap: 1em;
+  margin-top: 0.7rem;
+}
+
+.neil-img2 img{
+  width: 10vmax;
+}
+
+/* center */
+.center-img{
+  margin: auto;
+  
+  }
+
+.center-img img{
+  width: auto;
+  height:25vmax;
+ 
+}
+
+.center-img p{
+  font-size: min(1vw,2em);
+  padding:0.5em;
+  margin-top: 2em;
+}
+
+/* right */
+.live{
+  display: flex;
+  gap: 1em;
+}
+
+.live img{
+  width: 9em;
+}
+
+.live-text{
+  font-size: min(1vw,2em);
+}
+
+.nisiyama{
+  margin-top:1em;
+}
+
+.nisiyama1{
+  display: flex;
+  gap: 1em;
+}
+
+.nisiyama1 img{
+  width: 9em;
+  
+}
+
+.nisiyama2{
+  font-size: min(1vw,2em);
+  margin-top: 1em;
+}
+
+/* 名前の見出し */
+/* 全員同じ */
+.heading12 {
+	position: relative;
+	font-size:min(6vw,2em);
+  margin: 0;
+  padding: 0;
+}
+
+.heading12::before {
+	content: attr(data-number);
+	margin-right: 20px;
+	color: #9ec4f3;
+	font-size:min(6vw,3em);
+
+}
+/* 名前見出し終了 */
+
+
+/* left-point */
+h3 {
+  position: relative;
+  border-top: solid 2px #80c8d1;
+  border-bottom: solid 2px #80c8d1;
+  background: #f4f4f4;
+  line-height: 1.4;
+  padding: 0.2em 0.3em;
+  margin: 2em 0 0.5em;
+}
+
+h3:after {
+  /*タブ*/
+  position: absolute;
+  font-weight: 300;
+  /* フォントの太さ */
+  content: 'point';
+  background: #80c8d1;
+  color: #fff;
+  left: 0px;
+  bottom: 100%;
+  border-radius: 5px 5px 0 0;
+  padding: 5px 7px 3px;
+  font-size: 0.7em;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+/* left-point終了 */
+
+/* 梅原裕一郎 */
+
+#umehara{
+  margin: 4em 4em;
+  background-color: rgba(243, 243, 243, 0.808);
+}
+
+.main2{
+  display: flex;
+}
+
+.left2{
+  width: 45%;
+}
+
+.center2{
+ width: 20%;
+}
+
+/* left */
+.kao{
+  display: flex;
+  gap: 1em;
+}
+
+.kao-img img{
+  width: 16.2vmax;
+  margin-top: 1em;
+}
+
+.kao2-text{
+ font-size: min(1vw,2em);
+}
+
+.kao2 img{
+  width: 20vmax;
+  margin-top: 1.5em;
+}
+
+/* center */
+.center2-img img{
+padding: 0.2em;
+width: 15vmax;
+margin-top: 1em;
+}
+
+.center2-text {
+  font-size: min(1vw,2em);
+  padding: 0.4em;
+}
+
+/* right */
+.idol{
+  display: flex;
+  gap: 0.5em;
+}
+
+.idol-img img{
+  width: 13vmax;
+}
+
+.idol-text p{
+  font-size: min(1vw,2em);
+}
+
+.radio{
+  display: flex;
+  gap: 0.5em;
+}
+
+.radio img{
+  width: 15vmax;
+}
+
+.radio-text{
+  font-size: min(1vw,2em);
+}
+
+.saba{
+  display: flex;
+  margin-top: 0.4em;
+}
+
+.saba-img3{
+  display: flex;
+  gap: 0.5em;
+}
+
+.saba-img2 img{
+  width: 16.8vmax;
+}
+
+.saba-img3{
+  display: flex;
+  gap: 1.4em;
+}
+
+.saba-text{
+  font-size: min(1vw,2em);
+  padding: 0.4em;
+}
+
+.saba-img3 img{
+  width: 7.5vmax;
+}
+
+/* 江口拓也 */
+
+#eguchi{
+  margin: 4em 4em;
+  background-color:  rgba(222, 222, 222, 0.807);;
+}
+
+.main3{
+  display: flex;
+}
+
+.left3{
+  width: 44%;
+}
+
+.kami1{
+  display: flex;
+  gap: 0.5em;
+}
+
+.kami1 img{
+  width: 12vmax;
+}
+
+.kami2{
+  margin-top: 0.5em;
+  font-size: min(1vw,2em);
+}
+  
+.center3{
+  margin-top: -0.8em;
+}
+
+.center3 p{ 
+  font-size: min(1vw,2em);
+}
+
+.center3 img{
+  width: 15vmax;
+  padding: 0.3em;
+}
+
+/* right */
+.cd{
+  display: flex;
+  gap: 0.5em;
+}
+
+.cd-img img{
+  width: 10vmax;
+ 
+}
+
+.cd-text{
+  font-size: min(1vw,2em);
+}
+
+.oreiya{
+  display: flex;
+  margin-top: 0.5em;
+  gap: 0.1em;
+}
+
+.oreiya-img img{
+  width: 15vmax;
+}
+
+.oreiya-text{
+  font-size: min(1vw,2em);
+}
+
+.egumi-img{
+  display: flex;
+}
+
+.egu img{
+  width: 12vmax;
+  margin-top: 0.5em;
+}
+
+.egu2 img{
+  width: 18vmax;
+  margin-top: 0.5em;
+}
+
+.egumi-text{
+  font-size: min(1vw,2em);
+}
+
+
+
+.marker {
+  background: linear-gradient(transparent 60%, #feffc1 65%);
+ font-weight: bold; 
+ }
+
+ #area6{
+   background-color: #f3f3f3;
+ }
+
+ 

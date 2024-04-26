@@ -1,0 +1,802 @@
+body{
+  margin: 0;
+  background-size: 32px 32px ;
+  background-color: rgb(253, 253, 253);
+  background-image: linear-gradient(90deg, transparent 31px, #333 32px), linear-gradient(0deg, transparent 31px, #333 32px);
+  }
+  
+
+
+/*ボタン全体の形状*/
+
+.openbtn1{
+    /*はじめは非表示に*/
+  display: none;
+    /*ボタンの位置*/
+  position:fixed;
+  top:10px;
+  right: 10px;
+  z-index: 999;
+    /*ボタンの形状*/
+  background:#666;
+  cursor: pointer;
+    width: 50px;
+    height:50px;
+  border-radius: 5px;
+}
+
+/*ボタンのアイコン設定*/
+.openbtn1 span{
+    display: inline-block;
+    transition: all .4s;
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+  background-color: #fff;
+    width: 45%;
+  }
+
+.openbtn1 span:nth-of-type(1) {
+  top:15px; 
+}
+
+.openbtn1 span:nth-of-type(2) {
+  top:23px;
+}
+
+.openbtn1 span:nth-of-type(3) {
+  top:31px;
+}
+
+/*activeクラスが付与された後のボタンのアイコン設定*/
+.openbtn1.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 30%;
+}
+
+.openbtn1.active span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.openbtn1.active span:nth-of-type(3){
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 30%;
+}
+
+/*fadeDownクラスが付与された後のボタンの出現アニメーション設定*/
+.fadeDown {
+    animation-name: fadeDownAnime;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    display: block;
+}
+@keyframes fadeDownAnime{
+  from {
+    opacity: 0;
+  transform: translateY(-100px);
+  }
+
+  to {
+    opacity: 1;
+  transform: translateY(0);
+  }
+}
+
+
+/*========= ヘッダーナビゲーションのためのCSS ===============*/
+
+/*==ヘッダーの形状*/
+#header{
+  height: 70px;
+  width:auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background:rgb(255, 255, 255);
+  color:#fff;
+  text-align: center;
+  padding: 10px;
+}
+
+
+
+.back img{
+  text-align: center;
+  animation-name: fade;
+  animation-duration:2s;
+  max-width: 100%;
+  height: auto;
+  
+}
+
+@keyframes fade{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 5;
+  }
+}
+
+h1 img{
+  width: 130px;
+  height: auto;
+  margin-top: 10px;
+  z-index: 99;
+}
+
+/*.doneクラスがついたヘッダー*/
+#header.dnone {
+  opacity: 0;/*透過0にして非表示に*/
+}
+
+/*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたら*/
+#header.dnone.panelactive {
+  opacity: 1;/*不透明にして出現*/
+}
+
+
+/*==ヘッダーのテキストナビゲーションの形状*/
+#g-navi ul{
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+#g-navi ul li a{
+  display: block;
+  text-decoration: none;
+  color: #666;
+  padding:10px;
+  font-size: min(2vw,em);
+}
+
+#g-navi ul li.current a,
+#g-navi ul li a:hover{
+  color:rgb(168, 168, 168); 
+}
+
+/*.doneクラスがついたヘッダーのテキストナビゲーションの形状*/
+#header.dnone #g-navi{
+    /*固定位置にして最背面に*/
+    position:fixed;
+  top: 0;
+    left: 0;
+  z-index: -1;
+    /*高さと幅*/  
+  width:100%;
+  height: 100vh;
+    /*天地中央＆テキスト中央揃え*/  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+    /*はじめは透過0に*/  
+    opacity: 0;
+  transition: all 0.4s;
+}
+
+/*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたナビゲーションの形状*/
+#header.dnone.panelactive #g-navi{
+  opacity: 1;/*不透明に*/
+  z-index:3;/*最前面に*/
+  background:#eee;
+}
+
+#header.dnone.panelactive #g-navi ul{
+  display:block;/*flexの横並びをblockにして縦並びに*/
+}
+
+
+/*リストの形状*/
+
+#header.dnone.panelactive #g-navi li a{
+  color: #333;
+  text-decoration: none;
+  padding:10px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  transition:all 0.3s;
+}
+
+
+.back h1 ,h3{
+  position:absolute;/*絶対配置*/
+  color: rgb(39, 38, 38);/*文字は白に*/
+  /* top: 16vh; */
+ 
+
+ 
+}
+/* 一番上の文字 */
+.back h1{
+  font-size:4.5vw;
+  top: 15vh;
+  left: 10vh;
+}
+
+h3 {
+  font-weight: 200;
+  margin: 4em 0;
+  color: #888;
+  font-size: 2vw;
+  margin-left: 17vh;
+  top: 17vh;
+}
+
+
+
+
+
+
+
+
+  .heading{
+    position: relative;
+   
+    font-size:50px;
+  margin: 0;
+  }
+
+  .heading span{
+    position: relative;
+    z-index: 2;
+    font-size: 10vh;
+    display: block;
+    text-align: center;
+  margin-top: 13px;
+  }
+
+  .heading::before{
+    content:attr(data-number);
+    position: absolute;
+    top: -60px;
+    left: 0;
+    color: #9292924d;
+    font-size: 50px;
+    font-weight: 800;
+    z-index: -3;
+    font-size: 17vh;
+    margin-top: -14px;
+  }
+
+  
+
+  .item img{
+    width: 30vh;
+    height: auto;
+   margin-top: -50px;
+   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+
+  .item a img {
+    border:2px solid white;
+  }
+.item a:hover img {
+  border:2px solid #ff0000;
+}
+
+
+#area-3 img{
+  width: 20vh;
+  height: auto;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 10vh;
+}
+
+.item{
+  gap: 0 5px;
+  background-color: rgb(240, 240, 240);
+  padding: 0 3vh 0 3vh;
+  width: 30vh;
+  height: auto;
+  margin-bottom: 7vh;
+}
+
+
+
+.heading5 {
+  position: relative;
+  font-size: 3vh;
+  color: #333;
+  text-align: center;
+}
+
+.heading5::before,
+.heading5::after {
+  position: absolute;
+  top: 50%;
+  display: inline-block;
+  width: 10%;
+  content: '';
+  border-top: 3px solid #333;
+}
+
+.heading5::before {
+  left: 0;
+
+}
+.heading5::after {
+  right: 0;
+  
+}
+
+ul.list {
+  max-width: 17em;
+  padding: 0;
+  margin: 0 auto;
+  list-style-type: none;
+  counter-reset: li;
+ 
+}
+
+ul.list li {
+  position: relative;
+  margin: 0.9em 0 0.9em 3.8em;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 2;
+  color: #333;
+}
+
+ul.list li::before {
+  position: absolute;
+  top: 50%;
+  left: -3em;
+  width: 30px;
+  height: 30px;
+  color: #fff;
+  text-align: center;
+  content: counter(li);
+  counter-increment: li;
+  background: #00b5ad;
+  -moz-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+h5{
+  text-align: center;
+  font-size: 3vh;
+}
+
+
+.mokuzi{
+  padding: 3vh;
+}
+
+span{
+ margin-bottom:4vh;
+}
+
+.mokuzi li{
+  line-height: 1.5;
+  padding: 0.5em 0;
+ 
+}
+
+h6{
+ padding: 5vh;
+  text-align: center;
+  font-size: 3vh;
+  margin: 0;
+}
+
+li{
+  padding: 0;
+  text-align: center;
+  list-style-type: none;
+  font-size: 2vh;
+ 
+ }
+
+ a{
+   color: rgb(209, 88, 88);
+   text-decoration: none;
+   
+ }
+
+ .mokuzi{
+  
+  padding: 0.5em 0.5em 0.5em 2em;
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+ 
+ }
+
+ ul, li{
+  line-height: 1.5;
+  padding: 0.5em 0;
+ }
+
+ .box5{
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  border: double 5px #4ec4d3;
+  width: 80vh;
+  height: auto;
+  margin: auto;
+ }
+
+ .box5 li{
+  margin: 0; 
+  padding: 0;
+ }
+
+ .img img{
+   width: 40vh;
+   height: auto;
+   margin-top: 30px;
+  
+ }
+#area-4{
+  margin: 60px 10vh;
+  background-color: rgba(245, 245, 245, 0.87);
+}
+
+#area-5{
+  margin: 60px 10vh;
+  background-color: rgba(245, 245, 245, 0.87);
+}
+
+#area-6{
+  margin: 60px 10vh;
+  background-color: rgba(245, 245, 245, 0.87);
+}
+
+
+.under {
+  background: linear-gradient(transparent 80%, #ffae51 85%);
+}
+
+span3{
+  font-size: 3vh;
+}
+
+h6{
+  position: relative;
+   padding: 1.5rem 2rem 1.5rem 160px;
+   border-bottom: 3px solid rgb(31, 31, 31);
+   font-size: min(6vw,3em);
+ }
+ 
+ h6 span {
+   font-family: 'Roboto', sans-serif;
+   font-size: 50px;
+   font-size: 10rem;
+   line-height: 1;
+   position: absolute;
+   bottom: -1.6rem;
+   left: 0;
+   color: rgb(173, 173, 173);
+  }
+
+
+  small{
+    background:rgb(255, 255, 255);
+    color:rgb(0, 0, 0);
+    display: block;
+    text-align: center;
+    padding:20px;
+  }
+
+  .wakeme{
+    display: flex;
+  }
+  .top{
+    width: auto;
+    height: 80%;
+    display: flex;
+  }
+
+  .bottom{
+    width: auto;
+   height: 20%;
+    background-color: rgb(134, 134, 134);
+  }
+
+  .left{
+    width: 35%;
+  }
+
+  .main{
+    width: 30%;
+  }
+
+  .right{
+    width: 35%;
+  }
+
+  .main img{
+    margin: 0.1em;
+    width: 25vmax;
+    text-align: center;
+    align-self: center;
+  }
+
+  .left1{
+    display: flex;
+    font-size: min(1vw,2em);
+  }
+
+  .left1 img{
+    width: 20vmax;
+    margin:0.3em;
+
+  }
+
+  .left2 {
+    display: flex;
+    font-size: min(1vw,2em);
+  }
+
+  .left2 img{
+    width: 15vmax;
+    margin: 0.3em;
+  }
+
+  .left3 {
+    display: flex;
+    font-size: min(1vw,2em);
+  }
+
+  .left3 img{
+    width: 20vmax;
+    margin: 0.3em;
+  }
+
+  .left4{
+    display: flex;
+    font-size: min(1vw,2em);
+  }
+
+  .left4 img{
+    width:16vmax;
+  }
+
+  .hi{
+   display: flex;
+   font-size: min(1vw,2em);
+  }
+  
+
+
+  .right1 img{
+    width:15vmax;
+    height: auto;
+    margin-right: 0.3em;
+  }
+
+  .right2{
+    display: flex;
+    font-size: min(1vw,2em);
+    gap: 0.1em ;
+  }
+
+  .right2 img{
+    width: 15vmax;
+  }
+  
+  .right3{
+    display: flex;
+  }
+
+  .right3-img img{
+    width: 15vmax;
+    margin-top: 0.2em;
+  }
+
+  .right3-text{
+    font-size: min(1vw,2em);
+    margin-top: 0.2em;
+  }
+
+  .main-img{
+    display: flex;
+    font-size: min(1vw,2em);
+  }
+
+  .main-img img{
+    width: 10vmax;
+    margin-top: 0;
+  }
+
+
+  /* huruba */
+
+  .main2{
+    display: flex;
+    margin: 0.1em;
+    
+  }
+
+  .manaka img{
+    margin: 0.3em;
+  }
+
+.hidari1{
+  font-size: min(1vw,2em);
+  display: flex;
+}
+
+  .hidari1 img{
+    width: 13em;
+    margin: 0.3em;
+  }
+
+  .hidari{
+    width: 35%;
+  }
+
+  .hidari2{
+    display: flex;
+    font-size: min(1vw,2em);
+  }
+
+  .hidari2 img{
+    width: 12vmax;
+  }
+
+  .hidari3{
+    display: flex;
+    font-size: min(1vw,2em);
+  }
+
+  .hidari3 img{
+    width: 17vmax;
+    margin-top: 0.2em;
+  }
+
+  .hidari4{
+    display: flex;
+    font-size: min(1vw,2em);
+  }
+
+  .hidari4 img{
+    width: 13vmax;
+    margin-top: 0.2em;
+  }
+
+  .migi1{
+    display: flex;
+    font-size: min(1vw,2em);
+  }
+
+  .migi1 img{
+    width: 10vmax;
+    margin: 0.3em;
+  }
+
+.migi{
+  width: 35%;
+}
+
+.migi2 img{
+  width: 10vmax;
+}
+
+.migi2{
+  display: flex;
+  font-size: min(1vw,2em);
+}
+
+.migi2 img{
+  width: 10vmax;
+  margin: 0.2em;
+}
+
+.migi3{
+  display: flex;
+  font-size: min(1vw,2em);
+  margin: 0.2em;
+}
+
+.migi3 img{
+  width: 10vmax;
+  margin-top: 0.2em;
+}
+
+/* naruto */
+.main3{
+ display: flex;
+
+}
+
+.manka3 img{
+  width: 25vmax;
+}
+
+
+.naruto{
+  width: 40%;
+}
+
+.aa{
+  width: 40%;
+}
+
+
+
+.naruto1{
+  display: flex;
+  font-size: min(1vw,2em);
+  margin: 0.3em;
+}
+
+.naruto1 img{
+  width: 15vmax;
+}
+
+.naruto2{
+  display: flex;
+  font-size: min(1vw,2em);
+}
+
+.naruto2 img{
+  width: 15vmax;
+}
+
+.naruto3{
+  display: flex;
+  font-size: min(1vw,2em);
+}
+
+.naruto3 img{
+  width: 15vmax;
+}
+
+.naruto4{
+  display: flex;
+  font-size: min(1vw,2em);
+  margin: 0.3em;
+}
+
+.naruto4 img{
+  width: 12vmax;
+}
+
+.aa-1{
+  display: flex;
+  font-size: min(1vw,2em);
+  margin: 0.3em;
+}
+
+.aa-1 img{
+  width: 15vmax;
+  margin-right: 0.3em;
+}
+
+.aa-2{
+  display: flex;
+  font-size: min(1vw,2em);
+  margin: 0.3em;
+}
+
+.aa-2 img{
+  width: 15vmax;
+  margin-right: 0.3em;
+}
+
+.aa-3{
+font-size: min(1vw,2em);
+margin: 0.3em;
+}
+
+.aa-3 img{
+  width: 30vmax;
+}
